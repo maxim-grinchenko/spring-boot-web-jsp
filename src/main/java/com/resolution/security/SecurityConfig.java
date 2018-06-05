@@ -1,6 +1,5 @@
-package com.resolution.security;//package com.resolution.security;
+//package com.resolution.security;
 //
-//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 //import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -10,7 +9,7 @@ package com.resolution.security;//package com.resolution.security;
 //
 //@Configuration
 //@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -24,11 +23,13 @@ package com.resolution.security;//package com.resolution.security;
 //                .roles("USER");
 //    }
 //
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER").and()
-//                .withUser("user1").password("password").roles("USER", "ADMIN");
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/view").permitAll()
+//                .anyRequest().authenticated().and().httpBasic();
 //    }
+//
+//
 //}

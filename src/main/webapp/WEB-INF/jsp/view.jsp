@@ -31,7 +31,7 @@
         </tr>
     </table>
     <p>
-        <a href="register" class=".btn-large">Add New User</a>
+        <a href="register" class="btn btn-large">Add New User</a>
     </p>
 </div>
 </body>

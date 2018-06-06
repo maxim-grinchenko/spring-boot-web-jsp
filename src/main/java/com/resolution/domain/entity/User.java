@@ -4,12 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,35 +17,29 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "APP_USER")
-public class User implements Serializable{
-
-    private static final long serialVersionUID = 1L;
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //    @NotEmpty
+//    @NotNull
+    @NotEmpty
     @Column(name = "FIRST_NAME", nullable = false)
     private String name;
 
-    //    @NotEmpty
+//    @NotNull
+    @NotEmpty
     @Column(name = "PASSWORD", nullable = false)
     private String phone;
 
-
-    //    @NotEmpty
+//    @NotNull
+    @NotEmpty
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
+    /*
+     * some int validation or custom annotation for validation*/
     @Column(name = "ROLE_ID", nullable = false)
     private int roleId;
-
-//    @NotEmpty
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "APP_USER_USER_PROFILE",
-//            joinColumns = {@JoinColumn(name = "USER_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID")})
-//    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
 }

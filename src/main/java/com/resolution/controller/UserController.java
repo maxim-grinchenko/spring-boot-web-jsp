@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,6 @@ public class UserController {
     }
 
     @RequestMapping("/register")
-
     public String register(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", service.findAllUsers());
@@ -52,14 +52,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit/{id}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView edit(@PathVariable long id) {
         User user = service.findUserById(id);
         return new ModelAndView("editform", "command", user);
     }
 
     @GetMapping("/delete/{id}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView update(@PathVariable long id) {
         service.deleteById(id);
         return new ModelAndView("redirect:/view");

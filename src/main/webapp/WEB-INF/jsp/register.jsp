@@ -28,10 +28,8 @@
                 </tr>
                 <tr>
                     <td style="width: 159px">Phone :</td>
-                    <td style="width: 450px"><input class="form-control" type="tel" name="phone" placeholder="+123456789"
-                               pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"
-                               minlength="6" maxlength="18" required/>
-                        <span class="form__error">This field must contain phone in the format +XX(XXX)XXX-XX-XX or XXXXXXXXXXXX</span>
+                    <td style="width: 450px"><input class="form-control" type="text" name="phone" id="phones" placeholder="+7 (999) 99 99 999"/>
+                        <%--<span class="form__error">This field must contain phone in the format +XX(XXX)XXX-XX-XX </span>--%>
                     </td>
                 </tr>
                 <tr>
@@ -48,5 +46,19 @@
         </div>
     </form>
 </div>
+
+<!-- Bootstrap core JavaScript
+   ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#phones").mask("+7 (999) 99-99-999");
+    });
+</script>
+
 </body>
 </html>

@@ -4,10 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -22,17 +23,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @NotNull
+    @NotNull
     @NotEmpty
     @Column(name = "FIRST_NAME", nullable = false)
     private String name;
 
-//    @NotNull
+    @NotNull
     @NotEmpty
     @Column(name = "PASSWORD", nullable = false)
     private String phone;
 
-//    @NotNull
+    @NotNull
+    @Email
     @NotEmpty
     @Column(name = "EMAIL", nullable = false)
     private String email;

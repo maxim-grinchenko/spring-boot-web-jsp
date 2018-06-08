@@ -1,4 +1,4 @@
-package com.resolution.infra.exception;
+package com.resolution.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;

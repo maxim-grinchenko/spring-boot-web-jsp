@@ -1,0 +1,50 @@
+h1{
+	color:#0000FF;
+}
+
+h2{
+	color:#FF0000;
+}
+
+.form {
+	display: inline-block;
+	padding: 25px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: 500px;
+}
+
+.form__error {
+	color: red;
+	text-align: left;
+	font-size: 12px;
+	display: block;
+	margin-top: 3px;
+	display: none;
+}
+
+#wrapp{
+	width: 600px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+input:valid:not(:placeholder-shown) {
+	border-color: green;
+}
+
+input:invalid:not(:placeholder-shown) {
+	border-color: red;
+	border-width:2px;
+}
+input:invalid:not(:placeholder-shown) + .form__error {
+	display: block;
+}
+
+placeholder{
+	font-size: 80%;
+}
+
+.table table-bordered td:first-child{
+	width: 159px;
+}

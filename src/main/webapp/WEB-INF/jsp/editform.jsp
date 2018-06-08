@@ -12,9 +12,10 @@
 <head>
     <title>Edit Contact</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="<c:url value="../css/main.css" />" rel="stylesheet">
 </head>
 <body>
-<div align="center">
+<div id="wrapp">
     <h1>Edit User</h1>
 
     <form:form method="post" action="/save" >
@@ -22,19 +23,25 @@
             <table class="table table-bordered">
                 <tr>
                     <td>ID :</td>
-                    <td><form:input type="text" path="id"  /></td>
+                    <td><form:input type="text" path="id"  readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Name :</td>
-                    <td><form:input type="text" path="name"  /></td>
+                    <td>
+                        <form:input type="text" class="form-control" path="name"  placeholder="your name" minlength="2" maxlength="18" />
+                    </td>
                 </tr>
                 <tr>
                     <td>Phone :</td>
-                    <td><form:input type="text" path="phone"/></td>
+                    <td><form:input type="text" class="form-control" path="phone" placeholder="+123456789"
+                                    pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"
+                                    minlength="6" maxlength="18" /></td>
                 </tr>
                 <tr>
                     <td>Email :</td>
-                    <td><form:input type="text" path="email" /></td>
+                    <td><form:input type="text" class="form-control" path="email" placeholder="your_email@example.com"
+                                    pattern="([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}"/>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <html>
 <head>
     <title>Login</title>
@@ -17,6 +18,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <%--<script src="/js/jquery-2.2.1.min.js"></script>--%>
 </head>
 <body>
 
@@ -29,15 +31,16 @@
                 </div>
                 <div class="panel-body">
 
-                    <%--<c:if value="/logout" >--%>
-                        <%--<div class="alert alert-info" role="alert">You've been logged out successfully.</div>--%>
-                    <%--</c:if>--%>
-                    <%--<#if error>--%>
-                        <%--<div class="alert alert-danger" role="alert">Invalid Username or Password!</div>--%>
-                    <%--</#if>--%>
+                        <c:if test="${param.logout ne null}">
+                            <div class="alert alert-info" >You've been logged out successfully.</div>
+                        </c:if>
+
+                        <c:if test="${param.error ne null}">
+                            <div class="alert alert-danger">Invalid Username or Password!</div>
+                        </c:if>
 
                     <form method="post">
-                        <input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">
+                        <%--<input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">--%>
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="Username"
@@ -49,6 +52,7 @@
                                    name="password">
                         </div>
                         <button type="submit" class="btn btn-default">Log in</button>
+                            <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
                     </form>
                 </div>
             </div>

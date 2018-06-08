@@ -22,13 +22,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user")
-                .password("user")
-                .roles("USER")
+                    .withUser("user")
+                    .password("user")
+                    .roles("USER")
                 .and()
-                .withUser("admin")
-                .password("admin")
-                .roles("USER", "ADMIN");
+                    .withUser("admin")
+                    .password("admin")
+                    .roles("USER", "ADMIN");
 
     }
 
@@ -36,13 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/logout").permitAll()
-                .anyRequest()
-                .fullyAuthenticated()
+                    .antMatchers("/logout").permitAll()
+                    .anyRequest()
+                    .fullyAuthenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                    .formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
         http.httpBasic();
     }
 

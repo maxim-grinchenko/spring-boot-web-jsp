@@ -18,7 +18,6 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <%--<script src="/js/jquery-2.2.1.min.js"></script>--%>
 </head>
 <body>
 
@@ -31,13 +30,13 @@
                 </div>
                 <div class="panel-body">
 
-                        <c:if test="${param.logout ne null}">
-                            <div class="alert alert-info" >You've been logged out successfully.</div>
-                        </c:if>
+                    <c:if test="${param.logout ne null}">
+                        <div class="alert alert-info">You've been logged out successfully.</div>
+                    </c:if>
 
-                        <c:if test="${param.error ne null}">
-                            <div class="alert alert-danger">Invalid Username or Password!</div>
-                        </c:if>
+                    <c:if test="${param.error ne null}">
+                        <div class="alert alert-danger">Invalid Username or Password!</div>
+                    </c:if>
 
                     <form method="post">
                         <%--<input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">--%>
@@ -52,9 +51,14 @@
                                    name="password">
                         </div>
                         <button type="submit" class="btn btn-default">Log in</button>
-                            <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
+                        <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
                     </form>
                 </div>
+            </div>
+            <div style="font-size: smaller">
+                <p>Login / Pass</p>
+                <p><b>admin / admin</b> - create, save, view, edit, delete users</p>
+                <p><b>user / user</b> - create, save, view users</p>
             </div>
         </div>
     </div>

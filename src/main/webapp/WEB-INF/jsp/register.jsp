@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td style="width: 159px">Phone :</td>
-                    <td style="width: 450px"><input class="form-control" type="text" name="phone" id="phones" placeholder="+7 (999) 99 99 999"/>
+                    <td style="width: 450px"><input class="form-control" type="tel" name="phone" id="phones" placeholder="+7 (999) 99 99 999" required/>
                         <%--<span class="form__error">This field must contain phone in the format +XX(XXX)XXX-XX-XX </span>--%>
                     </td>
                 </tr>

@@ -18,6 +18,7 @@
         <td>Name</td>
         <td>Phone</td>
         <td>Email</td>
+        <td>Role</td>
         <security:authorize access="hasRole('ADMIN')">
             <td>Action</td>
         </security:authorize>
@@ -27,6 +28,18 @@
             <td>${user.name}</td>
             <td>${user.phone}</td>
             <td>${user.email}</td>
+            <td>
+            <c:choose>
+                <c:when test="${user.roleId==1}">
+                    admin
+                    <br />
+                </c:when>
+                <c:otherwise>
+                    user
+                    <br />
+                </c:otherwise>
+            </c:choose>
+            </td>
 
             <security:authorize access="hasRole('ADMIN')">
                 <td>

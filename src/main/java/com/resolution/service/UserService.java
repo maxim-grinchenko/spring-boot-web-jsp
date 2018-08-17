@@ -9,12 +9,16 @@ public interface UserService {
 
     User findUserById(long id);
 
-    User saveUser(User student);
+    User saveUser(User user);
 
     List<User> findAllUsers();
 
-    void updateUser(User student);
+    void updateUser(User user);
 
     void deleteById(long id);
+
+    void deleteAll();
+
+    boolean confirmPasswordForChangeEmail(String password);
 
 }

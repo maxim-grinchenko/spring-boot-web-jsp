@@ -1,25 +1,49 @@
 package com.resolution.controller;
 
+import com.codahale.metrics.annotation.Timed;
+import com.resolution.domain.dto.CodeDto;
+import com.resolution.domain.dto.UserConfirmDto;
+import com.resolution.domain.dto.UserDTO;
 import com.resolution.domain.entity.User;
+import com.resolution.infra.transformer.UserMapper;
+import com.resolution.repository.UserRepository;
+import com.resolution.security.SecurityUtils;
 import com.resolution.service.UserService;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.net.URISyntaxException;
+import java.util.Iterator;
+import java.util.Optional;
+
 @Slf4j
 @ComponentScan("com.resolution.controller.*")
 @Controller
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class UserController {
 
-    @Autowired
     private UserService service;
+
+    private UserRepository repository;
+
+    private UserMapper mapper = UserMapper.INSTANCE;
+
+    @Autowired
+    public UserController(UserService service, UserRepository repository) {
+        this.service = service;
+        this.repository = repository;
+    }
 
     @RequestMapping("/")
     public String home() {
@@ -35,19 +59,26 @@ public class UserController {
 
     @PostMapping("/save")
     public ModelAndView saveEmployee(@ModelAttribute User user) {
-        if (user.getId() == 0) {
+
+        System.out.println("****************************");
+        System.out.println(user.toString());
+        System.out.println("****************************");
+
+        LOGGER.info("Start save / update user : {}", user.toString());
+
+        if (user.getId() == null) {
             service.saveUser(user);
+            LOGGER.debug(".......... user save!");
         } else {
             service.updateUser(user);
+            LOGGER.debug(".......... user update!");
         }
         return new ModelAndView("redirect:/view");
     }
 
     @RequestMapping("/view")
-    public ModelAndView getUsers() {
-
-        Iterable<User> list = service.findAllUsers();
-
+    public ModelAndView getAllUsers() {
+        Iterator<UserDTO> list = service.findAllUsers().stream().map(mapper::userToUserDTO).iterator();
         return new ModelAndView("view", "list", list);
     }
 
@@ -64,4 +95,34 @@ public class UserController {
         service.deleteById(id);
         return new ModelAndView("redirect:/view");
     }
+
+    @RequestMapping(value = "/users-ext/updateEmail",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<CodeDto> updateEmail(@RequestBody UserConfirmDto userConfirm) throws URISyntaxException {
+
+        String email = userConfirm.getEmail();
+
+        if (!email.contains("@") || email.length() > 100)
+            return new ResponseEntity<>(new CodeDto("INCORRECT_EMAIL"), HttpStatus.OK);
+
+        if (repository.findOneByEmail(email.toLowerCase()).isPresent()) {
+            return new ResponseEntity<>(new CodeDto("EMAIL_EXISTS"), HttpStatus.OK);
+        }
+
+        if (!service.confirmPasswordForChangeEmail(userConfirm.getPassword())) {
+            return new ResponseEntity<>(new CodeDto("INCORRECT_PASS"), HttpStatus.OK);
+        }
+
+        Optional<User> userOpt = repository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        userOpt.ifPresent(user -> {
+            user.setEmail(email);
+            repository.save(user);
+        });
+
+        return userOpt.map(p -> new ResponseEntity<>(new CodeDto("EMAIL_CHANGED"), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(new CodeDto("USER_NOT_FOUND"), HttpStatus.NOT_FOUND));
+    }
+
 }

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * This is place to handle exceptions
  */
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class ExceptionController {
+
     @ResponseStatus(HttpStatus.CONFLICT)  // 409
     @ExceptionHandler(DataIntegrityViolationException.class)
     public void handleConflict() {

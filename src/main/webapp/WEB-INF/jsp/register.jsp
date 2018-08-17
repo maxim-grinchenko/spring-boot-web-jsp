@@ -34,9 +34,14 @@
                 </tr>
                 <tr>
                     <td style="width: 159px">Email :</td>
-                    <td style="width: 450px"><input type="email" name="email" class="form-control" placeholder="your_email@example.com"
+                    <td style="width: 450px"><input type="email" name="text" class="form-control" placeholder="your_email@example.com"
                                                     pattern="([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}" required/></td>
                     <span class="form__error">This field must contain e-mail in the format example@site.com</span>
+                </tr>
+                <tr>
+                    <td style="width: 159px">Password :</td>
+                    <td style="width: 450px"><input type="text" name="password" class="form-control" placeholder="create your password" required/></td>
+                    <span class="form__error">This field must contain password</span>
                 </tr>
                 <tr>
                     <td></td>

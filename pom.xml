@@ -57,6 +57,11 @@
             <artifactId>h2</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
         <!-- Servlet+JSP+JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -115,6 +120,16 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.2.1.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-annotation</artifactId>
+            <version>3.2.6</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.data</groupId>-->
+            <!--<artifactId>spring-data-mongodb</artifactId>-->
+            <!--<version>1.0.0.RELEASE</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 

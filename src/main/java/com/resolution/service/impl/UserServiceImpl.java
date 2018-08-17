@@ -1,14 +1,19 @@
 package com.resolution.service.impl;
 
+import com.resolution.domain.entity.RoleType;
 import com.resolution.domain.entity.User;
 import com.resolution.infra.exception.ValidationException;
 import com.resolution.infra.validation.ValidationFactory;
 import com.resolution.repository.UserRepository;
+import com.resolution.security.SecurityUtils;
 import com.resolution.service.UserService;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +24,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private final UserRepository repository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User findUserById(final long id) {
@@ -37,7 +46,7 @@ public class UserServiceImpl implements UserService {
         List<ConstraintViolation> violations = validator.validate(user);
         if (!violations.isEmpty())
             throw new ValidationException("User validation fail", violations);
-        user.setRoleId(2);
+        user.setRole(RoleType.USER.getROLE());
         repository.save(user);
         return repository.save(user);
     }
@@ -65,4 +74,15 @@ public class UserServiceImpl implements UserService {
     public void deleteById(long id) {
         repository.delete(id);
     }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    public boolean confirmPasswordForChangeEmail(String password){
+        User user = repository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).orElseGet(User::new);
+        return passwordEncoder.matches(password, user.getPassword());
+    }
+
 }

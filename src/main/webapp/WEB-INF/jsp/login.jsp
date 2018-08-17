@@ -43,12 +43,12 @@
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="Username"
-                                   name="username">
+                                   name="username" value="admin">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" placeholder="Password"
-                                   name="password">
+                                   name="password" value="admin">
                         </div>
                         <button type="submit" class="btn btn-default">Log in</button>
                         <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>

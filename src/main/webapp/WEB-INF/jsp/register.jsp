@@ -23,18 +23,18 @@
             <table class="table table-bordered">
                 <tr>
                     <td style="width: 159px">Name :</td>
-                    <td style="width: 450px"><input class="form-control" type="text" name="name" placeholder="your name" minlength="2" maxlength="18" required/></td>
+                    <td style="width: 450px"><input class="form-control" value="Masss" type="text" name="name" placeholder="your name" minlength="2" maxlength="18" required/></td>
                     <span class="form__error">This field must contain name min = 2, max = 18 length</span>
                 </tr>
                 <tr>
                     <td style="width: 159px">Phone :</td>
-                    <td style="width: 450px"><input class="form-control" type="tel" name="phone" id="phones" placeholder="+7 (999) 99 99 999" required/>
+                    <td style="width: 450px"><input class="form-control" value="+7 (322) 32-32-323" type="tel" name="phone" id="phones" placeholder="+7 (999) 99 99 999" required/>
                         <%--<span class="form__error">This field must contain phone in the format +XX(XXX)XXX-XX-XX </span>--%>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 159px">Email :</td>
-                    <td style="width: 450px"><input type="email" name="email" class="form-control" placeholder="your_email@example.com"
+                    <td style="width: 450px"><input type="email" value="asd@asd.asd" name="email" class="form-control" placeholder="your_email@example.com"
                                                     pattern="([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}" required/></td>
                     <span class="form__error">This field must contain e-mail in the format example@site.com</span>
                 </tr>

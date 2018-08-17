@@ -23,24 +23,23 @@
             <table class="table table-bordered">
                 <tr>
                     <td>ID :</td>
-                    <td><form:input type="text" path="id"  readonly="true"/></td>
+                    <td><form:input type="text" path="id"  id="id" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Name :</td>
                     <td>
-                        <form:input type="text" class="form-control" path="name"  placeholder="your name" minlength="2" maxlength="18" />
+                        <form:input type="text" class="form-control" path="name"  placeholder="your name" minlength="2" maxlength="18" value="asd"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Phone :</td>
                     <td><form:input type="text" class="form-control" path="phone" placeholder="+123456789"
-                                    pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"
-                                    minlength="6" maxlength="18" /></td>
+                                    minlength="6" maxlength="18" value="+7 (322) 32-32-323"/></td>
                 </tr>
                 <tr>
                     <td>Email :</td>
                     <td><form:input type="text" class="form-control" path="email" placeholder="your_email@example.com"
-                                    pattern="([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}"/>
+                                     value="sdasd@asd.csa"/>
                     </td>
                 </tr>
                 <tr>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-    <application>webapp2-206412</application><!-- unused for Cloud SDK based tooling -->
-    <version>alpha-001</version><!-- unused for Cloud SDK based tooling -->
-    <threadsafe>true</threadsafe>
-    <sessions-enabled>true</sessions-enabled>
-    <runtime>java8</runtime>
-</appengine-web-app>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">-->
+    <!--<application>webapp2-206412</application>&lt;!&ndash; unused for Cloud SDK based tooling &ndash;&gt;-->
+    <!--<version>alpha-001</version>&lt;!&ndash; unused for Cloud SDK based tooling &ndash;&gt;-->
+    <!--<threadsafe>true</threadsafe>-->
+    <!--<sessions-enabled>true</sessions-enabled>-->
+    <!--<runtime>java8</runtime>-->
+<!--</appengine-web-app>-->

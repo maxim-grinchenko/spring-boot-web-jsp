@@ -17,4 +17,6 @@ public interface UserService {
 
     void deleteById(long id);
 
+    Optional<User> findOneByLogin(Long id);
+
 }

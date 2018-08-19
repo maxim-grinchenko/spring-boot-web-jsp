@@ -23,7 +23,7 @@
             <table class="table table-bordered">
                 <tr>
                     <td>ID :</td>
-                    <td><form:input type="text" path="id"  id="id" readonly="true"/></td>
+                    <td><form:input type="text" path="id" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>Name :</td>

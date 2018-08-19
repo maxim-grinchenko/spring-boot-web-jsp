@@ -12,6 +12,7 @@ import net.sf.oval.Validator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -65,4 +66,11 @@ public class UserServiceImpl implements UserService {
     public void deleteById(long id) {
         repository.delete(id);
     }
+
+    @Override
+    public Optional<User> findOneByLogin(Long id) {
+        return repository.findUserById(id);
+    }
+
+
 }

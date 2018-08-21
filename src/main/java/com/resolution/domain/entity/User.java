@@ -39,6 +39,11 @@ public class User {
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
+    @NotNull
+    @NotEmpty
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+
     /*
      * some int validation or custom annotation for validation*/
     @Column(name = "ROLE_ID", nullable = false)

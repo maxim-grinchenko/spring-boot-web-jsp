@@ -66,7 +66,7 @@ public class SecurityFilter implements Filter {
         Optional<User> user = userService.findOneByLogin(userID);
 //        userService.findOneByLogin(userID).filter(user -> user.getEmail().equals("dfsdf") && user.getId(userID));
 
-        if (!user.isPresent()) throw new UserNotFoundException("User not found");
+        if (!user.isPresent()) throw new IllegalArgumentException("User not found");
 
     }
 

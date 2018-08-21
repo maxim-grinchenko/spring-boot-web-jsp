@@ -5,10 +5,13 @@ import com.resolution.infra.exception.ValidationException;
 import com.resolution.infra.validation.ValidationFactory;
 import com.resolution.repository.UserRepository;
 import com.resolution.service.UserService;
+import com.resolution.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +24,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User findUserById(final long id) {
@@ -70,6 +76,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findOneByLogin(Long id) {
         return repository.findUserById(id);
+    }
+
+    @Override
+    public Optional<User> findOneByEmail(String email) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean confirmPasswordForChangeEmail(String password){
+        User user = repository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).orElseGet(User::new);
+        return passwordEncoder.matches(password, user.getPassword());
+    }
+
+    @Override
+    public User save(User user) {
+        return repository.save(user);
     }
 
 

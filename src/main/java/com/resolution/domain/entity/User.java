@@ -42,11 +42,10 @@ public class User extends AbstractEntity {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "id"))
+//    @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "id"))
+
+    @Column(name = "ROLE", nullable = false)
     private String role;
 
-
-    public User(String name, String phone, String email, String password) {
-    }
 }

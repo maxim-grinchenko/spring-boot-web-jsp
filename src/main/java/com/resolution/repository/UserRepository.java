@@ -16,35 +16,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     List<User> findAll();
 
-    Optional<User> findOneByActivationKey(String activationKey);
+    Optional<User> findByEmail(String email);
 
-    List<User> findAllByActivatedIsFalseAndCreatedDateBefore(ZonedDateTime dateTime);
-
-    Optional<User> findOneByResetKey(String resetKey);
-
-    Optional<User> findOneByEmail(String email);
-
-    Optional<User> findOneByLogin(String login);
-
-    Optional<User> findOneById(Long userId);
-
-    @Query(value = "select distinct user from User user join fetch user.authorities",
-            countQuery = "select count(user) from User user")
-    Page<User> findAllWithAuthorities(Pageable pageable);
-
-    List<User> findByLoginOrEmail(String login, String email);
-
-    List<User> findByIdIn(List<Long> ids);
-
-    @Override
-    void delete(User t);
-
-    @Query(value = "select distinct user from User user join fetch user.authorities where user.id in (:ids)")
-    List<User> findByIdWithAuthorities(@Param("ids") List<Long> ids);
-
-    List<User> findByKskIdAndAuthoritiesName(Long kskId, String role);
-
-    List<User> findByRegionAndAuthoritiesName(String region, String role);
-
-    List<User> findByAuthoritiesName(String role);
+    Optional<User> findByName(String login);
 }

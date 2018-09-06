@@ -7,7 +7,6 @@ import com.resolution.infra.validation.ValidationFactory;
 import com.resolution.repository.UserRepository;
 import com.resolution.security.SecurityUtils;
 import com.resolution.service.UserService;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.oval.ConstraintViolation;
@@ -25,7 +24,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private final UserRepository repository;
+    private UserRepository repository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -81,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean confirmPasswordForChangeEmail(String password){
-        User user = repository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).orElseGet(User::new);
+        User user = repository.findByName(SecurityUtils.getCurrentUserLogin()).orElseGet(User::new);
         return passwordEncoder.matches(password, user.getPassword());
     }
 

@@ -20,30 +20,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                    .withUser("user")
-                    .password("user")
-                    .roles("USER")
-                .and()
-                    .withUser("admin")
-                    .password("admin")
-                    .roles("USER", "ADMIN");
+//        auth
+//                .inMemoryAuthentication()
+//                    .withUser("user")
+//                    .password("user")
+//                    .roles("USER")
+//                .and()
+//                    .withUser("admin")
+//                    .password("admin")
+//                    .roles("USER", "ADMIN");
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                    .antMatchers("/logout").permitAll()
-                    .anyRequest()
-                    .fullyAuthenticated()
-                .and()
-                    .formLogin().loginPage("/login").permitAll()
-                .and()
-                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
-        http.httpBasic();
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                    .antMatchers("/logout").permitAll()
+//                    .anyRequest()
+//                    .fullyAuthenticated()
+//                .and()
+//                    .formLogin().loginPage("/login").permitAll()
+//                .and()
+//                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+//        http.httpBasic();
     }
 
     @Bean

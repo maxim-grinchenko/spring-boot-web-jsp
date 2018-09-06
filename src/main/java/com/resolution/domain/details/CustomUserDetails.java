@@ -14,8 +14,8 @@ public class CustomUserDetails extends User {
 
     private final Long id;
 
-    public CustomUserDetails(Long id, String name, String phone, String email, String password) {
-        super(name, phone, email, password);
+    public CustomUserDetails(Long id, String name, String phone, String email, String password, String role) {
+        super(name, phone, email, password, role);
         this.id = id;
     }
 

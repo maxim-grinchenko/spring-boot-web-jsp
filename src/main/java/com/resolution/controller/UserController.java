@@ -10,7 +10,6 @@ import com.resolution.repository.UserRepository;
 import com.resolution.security.SecurityUtils;
 import com.resolution.service.UserService;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -33,17 +32,19 @@ import java.util.Optional;
 @NoArgsConstructor
 public class UserController {
 
+    @Autowired
     private UserService service;
 
+    @Autowired
     private UserRepository repository;
 
     private UserMapper mapper = UserMapper.INSTANCE;
 
-    @Autowired
-    public UserController(UserService service, UserRepository repository) {
-        this.service = service;
-        this.repository = repository;
-    }
+//    @Autowired
+//    public UserController(UserService service, UserRepository repository) {
+//        this.service = service;
+//        this.repository = repository;
+//    }
 
     @RequestMapping("/")
     public String home() {
@@ -99,7 +100,7 @@ public class UserController {
     @RequestMapping(value = "/users-ext/updateEmail",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
+//    @Timed
     public ResponseEntity<CodeDto> updateEmail(@RequestBody UserConfirmDto userConfirm) throws URISyntaxException {
 
         String email = userConfirm.getEmail();
@@ -107,7 +108,7 @@ public class UserController {
         if (!email.contains("@") || email.length() > 100)
             return new ResponseEntity<>(new CodeDto("INCORRECT_EMAIL"), HttpStatus.OK);
 
-        if (repository.findOneByEmail(email.toLowerCase()).isPresent()) {
+        if (repository.findByEmail(email.toLowerCase()).isPresent()) {
             return new ResponseEntity<>(new CodeDto("EMAIL_EXISTS"), HttpStatus.OK);
         }
 
@@ -115,7 +116,7 @@ public class UserController {
             return new ResponseEntity<>(new CodeDto("INCORRECT_PASS"), HttpStatus.OK);
         }
 
-        Optional<User> userOpt = repository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        Optional<User> userOpt = repository.findByName(SecurityUtils.getCurrentUserLogin());
         userOpt.ifPresent(user -> {
             user.setEmail(email);
             repository.save(user);

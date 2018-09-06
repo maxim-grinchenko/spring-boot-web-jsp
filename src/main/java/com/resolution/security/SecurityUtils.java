@@ -15,6 +15,7 @@ import java.util.Collection;
  */
 
 public class SecurityUtils {
+
     private SecurityUtils() {
     }
 
